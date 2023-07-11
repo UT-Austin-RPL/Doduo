@@ -1,0 +1,48 @@
+_target_: src.models.corr_flow_module_v0.CorrFlowModuleV0
+
+num_vis: 4
+log_freq: 100
+val_vis_list_wandb:
+  [
+    bike-packing,
+    car-shadow,
+    horsejump-high,
+    drift-straight,
+    scooter-black,
+    loading,
+    motocross-jump,
+    dog,
+    parkour,
+  ]
+mixed_precision: False
+
+# loss weights
+loss_photometric_weight: 1.0
+loss_featuremetric_weight: 1.0
+loss_smoothness_weight: 0.0
+loss_distance_consistency_weight: 1.0
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 0.0002
+  betas: [0.9, 0.95]
+  weight_decay: 0.05
+
+scheduler:
+  _target_: src.models.components.lr_schedulers.WarmupCyclicLR
+  _partial_: true
+  total_epoch: 400
+  warmup_epoch: 10
+  min_lr: 0
+
+net:
+  _target_: src.models.components.models_corr_seg_flow.CorrSegFlowNet
+  dino_backbone: ["vit_small", 8]
+  dino_corr_mask_ratio: 0.99
+  dino_corr_mask_binary: True
+  num_loss_mask: 2
+  loss_mask_query_method: correlation
+  unimatch:
+    _target_: src.models.components.unimatch.unimatch.UniMatch
+    bilinear_upsample: True

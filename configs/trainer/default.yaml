@@ -1,0 +1,7 @@
+default_root_dir: ${paths.output_dir}
+
+min_epochs: 1 # prevents early stopping
+max_epochs: 40
+val_freq: 1 # validate per n epochs
+
+device: cuda

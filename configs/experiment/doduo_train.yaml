@@ -1,0 +1,47 @@
+# @package _global_
+
+defaults:
+  - override /datamodule: egoframe_tapvid.yaml
+  - override /model: doduo.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["corr-fomo", "corr-feat-flow"]
+
+seed: 12345
+
+# egoframe v1 dataset, use ego4d narration to select frames
+# use random resized crop as data augmentation
+datamodule:
+  train_batch_size: 64
+  val_batch_size: 1
+  data_train:
+    _target_: src.datamodules.components.youtubevos_seg_dataset.YoutubeVOSSegDatasetV0
+    data_root: ${oc.env:DATASET_DIR}/Youtube-VOS/train/
+    seg_dir: seg_mask2former
+    max_class: 32
+    remove_bg: False
+    max_interval: [5, 15]
+    transform:
+      _target_: src.datamodules.components.transforms.SegTransform
+      base_size: [320, 320]
+      crop_size: [256, 256]
+  data_val:
+    transform:
+      _target_: src.datamodules.components.tapvid_datasets.TapVidTransform
+      size: [256, 256]
+  data_test:
+    transform:
+      _target_: src.datamodules.components.tapvid_datasets.TapVidTransform
+      size: [256, 256]
+
+trainer:
+  max_epochs: 100
+  val_freq: 5
+
+logger:
+  wandb:
+    tags: ${tags}
+    # group: ${hydra.runtime.choices.experiment} # corr-fomo_egoframe_v1_dualmae_v1
