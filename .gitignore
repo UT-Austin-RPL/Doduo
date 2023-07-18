@@ -9,3 +9,4 @@ vendor
 Gemfile.lock
 _posts/
 .DS_Store
+test/
