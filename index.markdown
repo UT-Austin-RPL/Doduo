@@ -100,6 +100,27 @@ table
       border-radius: 50%;
       border: 2px solid white;
     }
+
+    #clearButtonContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    #clearButton {
+      padding: 10px 20px;
+      font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      border-radius: 20px;
+      border: none;
+      background-color: #f2f2f2;
+      transition: background-color 0.3s ease;
+    }
+
+    #clearButton:hover {
+      background-color: #e0e0e0;
+    }
 </style>
 
 <meta content="MSHTML 6.00.2800.1400" name="GENERATOR"><script
@@ -191,6 +212,10 @@ src="./src/pipeline.png" style="width:70%;"> </a></td>
     </div>
   </div>
 
+  <div id="clearButtonContainer">
+    <button id="clearButton">Clear Points</button>
+  </div>
+
   <script>
     // Load correspondence data from external file
     fetch("./src/corr.json")
@@ -231,6 +256,16 @@ src="./src/pipeline.png" style="width:70%;"> </a></td>
             rightDot.style.top = rightY + "px";
 
             rightImageContainer.appendChild(rightDot);
+          }
+        });
+
+        // Clear points button click event handler
+        document.getElementById("clearButton").addEventListener("click", function() {
+          var imageContainers = document.getElementsByClassName("image-container");
+          var dots = document.getElementsByClassName("dot");
+
+          while (dots.length > 0) {
+            dots[0].remove();
           }
         });
 
