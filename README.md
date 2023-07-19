@@ -2,9 +2,24 @@
 
 [Zhenyu Jiang](http://zhenyujiang.me), [Hanwen Jiang](https://hwjiang1510.github.io/), [Yuke Zhu](https://www.cs.utexas.edu/~yukez/)
 
+[Project](https://ut-austin-rpl.github.io/Doduo/) | arxiv | [Huggingface Model](https://huggingface.co/stevetod/doduo)
+
 ## News
 
 **`2023-07-20`**: Initial code release.
+
+## Huggingface Model
+
+We host pre-trained Doduo on Huggingface model hub. You can load the pretrained model by running the following command.
+
+```python
+from transformers import AutoModel
+from PIL import Image
+model = AutoModel.from_pretrained("stevetod/doduo", trust_remote_code=True)
+frame_src = Image.open("path/to/src/frame.png")
+frame_dst = Image.open("path/to/dst/frame.png")
+flow = model(frame_src, frame_dst)
+```
 
 ## Installation
 
