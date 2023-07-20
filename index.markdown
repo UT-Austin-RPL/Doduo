@@ -156,7 +156,7 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
 <!-- <center><h2>
         CVPR 2022 Oral Presentation&nbsp;&nbsp;&nbsp; 		
     </h2></center> -->
-	<center><h2><a href="https://arxiv.org/">Paper</a> | <a href="https://github.com/UT-Austin-RPL/Doduo">Code</a> </h2></center>
+	<center><h2><a href="https://arxiv.org/">Paper</a> | <a href="https://github.com/UT-Austin-RPL/Doduo">Code</a> | <a href="https://huggingface.co/stevetod/doduo/">Huggingface Model</a> </h2></center>
 
 
 <p>
@@ -203,12 +203,119 @@ cellpadding="0"><tr><td>
 
 <table border="0" cellspacing="10" cellpadding="0" align="center">
   <tbody><tr><td>
-  <div id="container">
+
+<div id="container">
+  <div class="image-container">
+    <img id="leftImage0" src="./src/imgs_0_src.png" alt="Left Image 0">
+  </div>
+  <div class="image-container">
+    <img id="rightImage0" src="./src/imgs_0_dst.png" alt="Right Image 0">
+  </div>
+</div>
+
+<div id="container">
+  <div class="image-container">
+    <img id="leftImage1" src="./src/imgs_1_src.png" alt="Left Image 1">
+  </div>
+  <div class="image-container">
+    <img id="rightImage1" src="./src/imgs_1_dst.png" alt="Right Image 1">
+  </div>
+</div>
+
+<div id="clearButtonContainer">
+  <button id="clearButton">Clear Points</button>
+</div>
+
+<script>
+  // Generate a random color
+  function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Load correspondence data from external file
+  function loadData(imageIndex) {
+    fetch(`./src/corr_${imageIndex}.json`)
+      .then(response => response.json())
+      .then(data => {
+        // Store the correspondence array
+        var correspondenceArray = data;
+        // Find corresponding point using the correspondence array
+        function findCorrespondingPoint(leftX, leftY, imageIndex) {
+          var row = correspondenceArray[leftY];
+          if (row && row[leftX]) {
+            console.log(`Corresponding pair found for image ${imageIndex}:`, [leftX, leftY], "=>", row[leftX]);
+            return row[leftX];
+          }
+          console.log(`Corresponding pair not found for image ${imageIndex}:`, [leftX, leftY]);
+          return null; // Corresponding point not found
+        }
+
+        // Left image click event handler
+        document.getElementById(`leftImage${imageIndex}`).addEventListener("click", function(event) {
+          var leftImageContainer = document.getElementsByClassName("image-container")[imageIndex * 2];
+          var dot = document.createElement("div");
+          dot.className = "dot";
+          dot.style.backgroundColor = getRandomColor();
+
+          var rect = leftImageContainer.getBoundingClientRect();
+
+          var leftX = Math.floor(event.clientX - rect.left);
+          var leftY = Math.floor(event.clientY - rect.top);
+
+          dot.style.left = leftX + "px";
+          dot.style.top = leftY + "px";
+
+          leftImageContainer.appendChild(dot);
+
+          // Find corresponding point and visualize on the right image
+          var rightPoint = findCorrespondingPoint(leftX, leftY, imageIndex);
+          if (rightPoint !== null) {
+            var rightX = rightPoint[0];
+            var rightY = rightPoint[1];
+
+            var rightImageContainer = document.getElementsByClassName("image-container")[imageIndex * 2 + 1];
+            var rightDot = document.createElement("div");
+            rightDot.className = "dot";
+            rightDot.style.backgroundColor = dot.style.backgroundColor;
+            rightDot.style.left = rightX + "px";
+            rightDot.style.top = rightY + "px";
+
+            rightImageContainer.appendChild(rightDot);
+          }
+        });
+      })
+      .catch(error => {
+        console.error(`Failed to load correspondence data for image ${imageIndex}:`, error);
+      });
+  }
+
+  // Function to clear points
+  function clearPoints() {
+    var dots = document.getElementsByClassName("dot");
+    while (dots.length > 0) {
+      dots[0].remove();
+    }
+  }
+
+  // Call the function to load data for the first image pair
+  loadData(0);
+  // Call the function to load data for the second image pair
+  loadData(1);
+  document.getElementById("clearButton").addEventListener("click", clearPoints);
+</script>
+
+
+  <!-- <div id="container">
     <div class="image-container">
-      <img id="leftImage" src="./src/img1.png" alt="Left Image">
+      <img id="leftImage0" src="./src/imgs_0_src.png" alt="Left Image 0">
     </div>
     <div class="image-container">
-      <img id="rightImage" src="./src/img2.png" alt="Right Image">
+      <img id="rightImage0" src="./src/imgs_0_dst.png" alt="Right Image 0">
     </div>
   </div>
 
@@ -218,14 +325,14 @@ cellpadding="0"><tr><td>
 
   <script>
     // Load correspondence data from external file
-    fetch("./src/corr.json")
+    fetch("./src/corr_0.json")
       .then(response => response.json())
       .then(data => {
         // Store the correspondence array
         var correspondenceArray = data;
 
         // Left image click event handler
-        document.getElementById("leftImage").addEventListener("click", function(event) {
+        document.getElementById("leftImage0").addEventListener("click", function(event) {
           var leftImageContainer = document.getElementsByClassName("image-container")[0];
           var dot = document.createElement("div");
           dot.className = "dot";
@@ -293,7 +400,7 @@ cellpadding="0"><tr><td>
       .catch(error => {
         console.error("Failed to load correspondence data:", error);
       });
-  </script>
+  </script> -->
 
 </td></tr>
 </tbody>
@@ -361,8 +468,7 @@ cellpadding="0"><tr><td>
               <tr>
                   <td>
                   <left>
-<pre><code style="display:block; overflow-x: auto">
-@inproceedings{jiang2023doduo,
+<pre><code style="display:block; overflow-x: auto">@inproceedings{jiang2023doduo,
    title={Doduo: Dense Visual Correspondence from Unsupervised Semantic-Aware Flow},
    author={Jiang, Zhenyu and Jiang, Hanwen and Zhu, Yuke},
    booktitle={TODO},
