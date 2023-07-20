@@ -169,10 +169,10 @@ Dense visual correspondence plays a vital role in robotic perception. This work 
 Trained on an in-the-wild video dataset, Doduo illustrates superior performance on point-level correspondence estimation over existing self-supervised correspondence learning baselines. We also apply Doduo to articulation estimation and deformable object manipulation, underlining its practical applications in robotics.
 </p></td></tr></table>
 </p>
-  </div>
+</div>
 </p>
 
-<br><br><hr> <h1 align="center">Dense Visual Correspondence</h1> <!-- <h2
+<br><hr> <h1 align="center">Dense Visual Correspondence</h1> <!-- <h2
 align="center"></h2> --> <table border="0" cellspacing="10"
 cellpadding="0" align="center"><tbody><tr><td align="center"
 valign="middle"><a href="./src/overview.png"> <img
