@@ -30,17 +30,23 @@ conda env create -f env.yaml
 ```
 You can change the `pytorch` and `cuda` version in env.yaml.
 
-## Data Preparation
+Also, the path to data is stored in `.env`. You can run `cp .env.example .env` and edit the `.env` file to change the path to data.
+
+## Data and Pretrained Model
 
 ### Training
 
-We use frames from Youtube VOS dataset for training. Please refer to [this website](https://youtube-vos.org/dataset/vis/) for data downloading. We use [Mask2Former](https://github.com/facebookresearch/Mask2Former) to generate instance masks for visible region discovery. We also put the predicted masks [here]().
+We use frames from Youtube VOS dataset for training. Please refer to [this website](https://youtube-vos.org/dataset/vis/) for data downloading. We use [Mask2Former](https://github.com/facebookresearch/Mask2Former) to generate instance masks for visible region discovery. We also put the predicted masks [here](https://utexas.box.com/s/201u9q9ldstfsn3xe5nh09x2emnvmp7k). Please unzip this file and put it under `Youtube-VOS/train/`.
 
 ### Testing
 
 #### Point Correspondence
 
 We evaluate point correspondence on DAVIS val set from TAP-Vid dataset. Please download the data from [here](https://storage.googleapis.com/dm-tapnet/tapvid_davis.zip)
+
+### Pretrained Model
+
+The pretrained model can be downloaded from this [link](https://utexas.box.com/s/tbkm8ec7oi41iedz1n23kr65fsjfad1a).
 
 ## Training
 
