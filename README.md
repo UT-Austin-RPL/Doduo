@@ -28,6 +28,7 @@ Create a conda environment and install required packages.
 ```bash
 conda env create -f env.yaml
 ```
+
 You can change the `pytorch` and `cuda` version in env.yaml.
 
 Also, the path to data is stored in `.env`. You can run `cp .env.example .env` and edit the `.env` file to change the path to data.

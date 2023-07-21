@@ -8,9 +8,9 @@ from einops import rearrange
 
 from src.models.components.dino import vision_transformer as vits
 from src.models.components.dino.utils import load_pretrained_weights
-
 from src.models.components.unimatch.geometry import flow_warp
 from src.models.components.unimatch.unimatch import UniMatch, coords_grid
+
 
 class CorrSegFlowNet(nn.Module):
     def __init__(
@@ -182,10 +182,9 @@ class CorrSegFlowNet(nn.Module):
         vis_dict["feature0"] = feature0
         vis_dict["feature1"] = feature1
         return loss_dict, vis_dict
-    
+
     def forward_features(self, frame_src: torch.Tensor, frame_dst: torch.Tensor):
         return self.unimatch.forward_features(frame_src, frame_dst)
-
 
 
 def charbonnier_loss(delta, alpha=0.45, epsilon=1e-3):
@@ -342,7 +341,6 @@ def query_point_correlation(points, correlation):
     return point_correlation
 
 
-
 @torch.no_grad()
 def extract_dino_feature(model, frame, return_h_w=False):
     """frame: B, C, H, W"""
@@ -357,6 +355,7 @@ def extract_dino_feature(model, frame, return_h_w=False):
     if return_h_w:
         return out, h, w
     return out
+
 
 @torch.no_grad()
 def get_dino_corr_mask(

@@ -11,6 +11,7 @@ IMAGENET_DEFAULT_STD = [0.229, 0.224, 0.225]
 LAB_MEAN = [50, 0, 0]
 LAB_STD = [50, 127, 127]
 
+
 class SegTransform(nn.Module):
     """Basic transform for image and segmentation.
 

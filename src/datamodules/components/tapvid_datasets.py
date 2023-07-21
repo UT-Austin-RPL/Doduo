@@ -49,6 +49,7 @@ class TapVidTransform:
         data["occluded"] = x["occluded"]
         return data
 
+
 class TAPVidDAVISDataset(Dataset):
     def __init__(self, path, transform=None):
         with open(path, "rb") as f:
