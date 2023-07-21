@@ -5,25 +5,27 @@ num_workers: 4
 pin_memory: False
 
 data_train:
-  _target_: src.datamodules.components.egoframe_dataset.Ego4DFrameDatasetV0
-  video_root: ${oc.env:DATASET_DIR}/ego4d/v1/frame_540ss_fps1/
-  max_interval: 5
-  sample_per_video: True
+  _target_: src.datamodules.components.youtubevos_seg_dataset.YoutubeVOSSegDatasetV0
+  data_root: ${oc.env:DATASET_DIR}/Youtube-VOS/train/
+  seg_dir: seg_mask2former
+  max_class: 32
+  remove_bg: False
+  max_interval: [5, 15]
   transform:
-    _target_: src.datamodules.components.transforms.PairTransformV0
-    base_size: 256
-    crop_size: 224
+    _target_: src.datamodules.components.transforms.SegTransform
+    base_size: [320, 320]
+    crop_size: [256, 256]
 
 data_val:
   _target_: src.datamodules.components.tapvid_datasets.TAPVidDAVISDataset
   path: ${oc.env:DATASET_DIR}/tapvid_davis/tapvid_davis.pkl
   transform:
     _target_: src.datamodules.components.tapvid_datasets.TapVidTransform
-    size: [224, 224]
+    size: [256, 256]
 
 data_test:
   _target_: src.datamodules.components.tapvid_datasets.TAPVidDAVISDataset
   path: ${oc.env:DATASET_DIR}/tapvid_davis/tapvid_davis.pkl
   transform:
     _target_: src.datamodules.components.tapvid_datasets.TapVidTransform
-    size: [224, 224]
+    size: [256, 256]
