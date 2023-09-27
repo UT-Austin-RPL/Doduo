@@ -172,28 +172,11 @@ Trained on an in-the-wild video dataset, Doduo illustrates superior performance 
 </div>
 </p>
 
-<br><hr> <h1 align="center">Dense Visual Correspondence</h1> <!-- <h2
+<br><hr> <h1 align="center">Video</h1> <!-- <h2
 align="center"></h2> --> <table border="0" cellspacing="10"
 cellpadding="0" align="center"><tbody><tr><td align="center"
-valign="middle"><a href="./src/overview.png"> <img
-src="./src/overview.png" style="width:100%;"> </a></td>
+valign="middle"><iframe width="800" height="450" src="https://www.youtube.com/embed/B8itgkZ8VS4?si=ktHXaPvBPD5hMGkm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
 </tr> </tbody> </table>
-
-<table width=800px><tr><td> <p align="justify" width="20%"> Dense visual correspondence involves identifying the corresponding pixel in a target image for any given pixel in a source image. Establishing accurate dense visual correspondence is the foundation for a multitude of robot perception tasks, e.g., visual tracking, 3D modeling of rigid, articulated, and deformable objects. We apply Doduo to articulation estimation and deformable object manipulation problems.</p></td></tr></table>
-
-  
-<br><br><hr> <h1 align="center">Doduo Architecture</h1> 
-<table border="0" cellspacing="10"
-cellpadding="0" align="center"><tbody><tr><td align="center"
-valign="middle"><a href="./src/pipeline.png"> <img
-src="./src/pipeline.png" style="width:70%;"> </a></td>
-</tr> </tbody> </table>
-
-<table width=800px><tr><td> <p align="justify" width="20%"> Doduo takes two images as inputs and uses a Transformer-based network to extract features of both images. Then we construct a 4D cost volume of all pairs of feature pixels and predict a dense semantic-aware flow field given the cost volume. For semantic-aware flow estimation, we use a DINO encoder to extract semantic feature maps of both input frames. According to the similarity of the semantic feature map, we compute a matching candidate mask for each of the feature points of the source frame, and integrate this information during flow estimation using masked Softmax. </p></td></tr></table>
-<br>
-
-<hr>
-
 
 <h1 align="center"> Point Correspondence </h1>
 
@@ -309,99 +292,6 @@ cellpadding="0"><tr><td>
   document.getElementById("clearButton").addEventListener("click", clearPoints);
 </script>
 
-
-  <!-- <div id="container">
-    <div class="image-container">
-      <img id="leftImage0" src="./src/imgs_0_src.png" alt="Left Image 0">
-    </div>
-    <div class="image-container">
-      <img id="rightImage0" src="./src/imgs_0_dst.png" alt="Right Image 0">
-    </div>
-  </div>
-
-  <div id="clearButtonContainer">
-    <button id="clearButton">Clear Points</button>
-  </div>
-
-  <script>
-    // Load correspondence data from external file
-    fetch("./src/corr_0.json")
-      .then(response => response.json())
-      .then(data => {
-        // Store the correspondence array
-        var correspondenceArray = data;
-
-        // Left image click event handler
-        document.getElementById("leftImage0").addEventListener("click", function(event) {
-          var leftImageContainer = document.getElementsByClassName("image-container")[0];
-          var dot = document.createElement("div");
-          dot.className = "dot";
-          dot.style.backgroundColor = getRandomColor();
-
-          var rect = leftImageContainer.getBoundingClientRect();
-
-          var leftX = Math.floor(event.clientX - rect.left);
-          var leftY = Math.floor(event.clientY - rect.top);
-
-
-          dot.style.left = leftX + "px";
-          dot.style.top = leftY + "px";
-
-          leftImageContainer.appendChild(dot);
-
-          // Find corresponding point and visualize on the right image
-          var rightPoint = findCorrespondingPoint(leftX, leftY);
-          if (rightPoint !== null) {
-            var rightX = rightPoint[0];
-            var rightY = rightPoint[1];
-
-            var rightImageContainer = document.getElementsByClassName("image-container")[1];
-            var rightDot = document.createElement("div");
-            rightDot.className = "dot";
-            rightDot.style.backgroundColor = dot.style.backgroundColor;
-            rightDot.style.left = rightX + "px";
-            rightDot.style.top = rightY + "px";
-
-            rightImageContainer.appendChild(rightDot);
-          }
-        });
-
-        // Clear points button click event handler
-        document.getElementById("clearButton").addEventListener("click", function() {
-          var imageContainers = document.getElementsByClassName("image-container");
-          var dots = document.getElementsByClassName("dot");
-
-          while (dots.length > 0) {
-            dots[0].remove();
-          }
-        });
-
-        // Generate a random color
-        function getRandomColor() {
-          var letters = "0123456789ABCDEF";
-          var color = "#";
-          for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-          }
-          return color;
-        }
-
-        // Find corresponding point using the correspondence array
-        function findCorrespondingPoint(leftX, leftY) {
-          var row = correspondenceArray[leftY];
-          if (row && row[leftX]) {
-            console.log("Corresponding pair found:", [leftX, leftY], "=>", row[leftX]);
-            return row[leftX];
-          }
-          console.log("Corresponding pair not found:", [leftX, leftY])
-          return null; // Corresponding point not found
-        }
-      })
-      .catch(error => {
-        console.error("Failed to load correspondence data:", error);
-      });
-  </script> -->
-
 </td></tr>
 </tbody>
 </table>
@@ -421,7 +311,7 @@ src="./src/articulation.png" style="width:100%;"> </a></td>
 
 
 <br><hr>
-<h1 align="center">Deformable Object Manipulation </h1>
+<h1 align="center">Goal-Conditioned Object Manipulation </h1>
 <table border="0" cellspacing="10"
 cellpadding="0" align="center"><tbody><tr><td align="center"
 valign="middle"><a href="./src/fig_deformable.png"> <img
@@ -430,7 +320,7 @@ src="./src/fig_deformable.png" style="width:100%;"> </a></td>
 
 <table border="0" cellspacing="10"
 cellpadding="0"><tr><td>
-<p> We apply Doduo to goal-conditioned deformable object manipulation. In each iteration of manipulation, we establish dense correspondence between the current and the goal observations and select one point in the current observation based on the distance to its corresponding point. Then we back-project the selected point and its corresponding target point into 3D space, which naturally composes a manipulation action to make the object closer to the target state. Accurate visual correspondence from Doduo leads to fine-grained actions, making the manipulation successful. </p></td></tr></table>
+<p> We apply Doduo to goal-conditioned object manipulation. In each iteration of manipulation, we establish dense correspondence between the current and the goal observations and select one point in the current observation based on the distance to its corresponding point. Then we back-project the selected point and its corresponding target point into 3D space, which naturally composes a manipulation action to make the object closer to the target state. Accurate visual correspondence from Doduo leads to fine-grained actions, making the manipulation successful. </p></td></tr></table>
   
 
 <table border="0" cellspacing="10" cellpadding="0" align="center">
@@ -438,17 +328,17 @@ cellpadding="0"><tr><td>
     <tr>
       <td align="center" valign="middle">
         <video muted autoplay loop controls width="100%">
-          <source src="./video/deformable_video_sloth.mp4" type="video/mp4">
+          <source src="./video/vis-peg.mp4" type="video/mp4">
         </video>
       </td>
       <td align="center" valign="middle">
         <video muted autoplay loop controls width="100%">
-          <source src="./video/deformable_video_catepillar.mp4" type="video/mp4">
+          <source src="./video/vis-monkey.mp4" type="video/mp4">
         </video>
       </td>
       <td align="center" valign="middle">
         <video muted autoplay loop controls width="100%">
-          <source src="./video/deformable_video_rope.mp4" type="video/mp4">
+          <source src="./video/vis-sloth.mp4" type="video/mp4">
         </video>
       </td>
     </tr>
