@@ -89,7 +89,7 @@ python src/eval.py experiment=doduo_train ckpt_path=/path/to/ckpt
 @inproceedings{jiang2023doduo,
    title={Doduo: Dense Visual Correspondence from Unsupervised Semantic-Aware Flow},
    author={Jiang, Zhenyu and Jiang, Hanwen and Zhu, Yuke},
-   booktitle={TODO},
+   booktitle={arXiv preprint arXiv:2309.15110},
    year={2023}
 }
 ```
