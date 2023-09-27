@@ -2,7 +2,7 @@
 
 [Zhenyu Jiang](http://zhenyujiang.me), [Hanwen Jiang](https://hwjiang1510.github.io/), [Yuke Zhu](https://www.cs.utexas.edu/~yukez/)
 
-[Project](https://ut-austin-rpl.github.io/Doduo/) | arxiv | [Huggingface Model](https://huggingface.co/stevetod/doduo)
+[Project](https://ut-austin-rpl.github.io/Doduo/) | [arxiv](https://arxiv.org/abs/2309.15110) | [Huggingface Model](https://huggingface.co/stevetod/doduo)
 
 ## News
 
