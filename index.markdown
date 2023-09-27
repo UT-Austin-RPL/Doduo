@@ -356,7 +356,7 @@ cellpadding="0"><tr><td align="center" valign="middel">
 <pre><code style="display:block; overflow-x: auto">@inproceedings{jiang2023doduo,
    title={Doduo: Dense Visual Correspondence from Unsupervised Semantic-Aware Flow},
    author={Jiang, Zhenyu and Jiang, Hanwen and Zhu, Yuke},
-   booktitle={TODO},
+   booktitle={arXiv preprint arXiv:2309.15110},
    year={2023}
 }
 </code></pre>
