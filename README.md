@@ -6,7 +6,7 @@
 
 ## News
 
-**`2023-07-20`**: Initial code release.
+**`2023-09-26`**: Initial code release.
 
 ## Huggingface Model
 
