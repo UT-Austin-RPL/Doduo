@@ -321,29 +321,24 @@ src="./src/fig_deformable.png" style="width:100%;"> </a></td>
 <table border="0" cellspacing="10"
 cellpadding="0"><tr><td>
 <p> We apply Doduo to goal-conditioned object manipulation. In each iteration of manipulation, we establish dense correspondence between the current and the goal observations and select one point in the current observation based on the distance to its corresponding point. Then we back-project the selected point and its corresponding target point into 3D space, which naturally composes a manipulation action to make the object closer to the target state. Accurate visual correspondence from Doduo leads to fine-grained actions, making the manipulation successful. </p></td></tr></table>
-  
 
-<table border="0" cellspacing="10" cellpadding="0" align="center">
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        <video muted autoplay loop controls width="100%">
-          <source src="./video/vis-peg.mp4" type="video/mp4">
-        </video>
-      </td>
-      <td align="center" valign="middle">
-        <video muted autoplay loop controls width="100%">
-          <source src="./video/vis-monkey.mp4" type="video/mp4">
-        </video>
-      </td>
-      <td align="center" valign="middle">
-        <video muted autoplay loop controls width="100%">
+<table border="0" cellspacing="10"
+cellpadding="0"><tr><td align="center" valign="middel">
+  <video muted controls width="100%">
+    <source src="./video/vis-peg.mp4" type="video/mp4">
+  </video></td></tr></table>
+
+<table border="0" cellspacing="10"
+cellpadding="0"><tr><td align="center" valign="middel">
+<video muted controls width="100%">
+        <source src="./video/vis-monkey.mp4" type="video/mp4">
+      </video></td></tr></table>
+
+<table border="0" cellspacing="10"
+cellpadding="0"><tr><td align="center" valign="middel">
+<video muted controls width="100%">
           <source src="./video/vis-sloth.mp4" type="video/mp4">
-        </video>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        </video></td></tr></table>
 
 
 <br>
