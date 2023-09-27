@@ -156,7 +156,7 @@ src="http://b5tcdn.bang5mai.com/js/flag.js?v=156945351"></script>
 <!-- <center><h2>
         CVPR 2022 Oral Presentation&nbsp;&nbsp;&nbsp; 		
     </h2></center> -->
-	<center><h2><a href="src/Doduo_ICRA_2024.pdf">Paper</a> | <a href="https://github.com/UT-Austin-RPL/Doduo">Code</a> | <a href="https://huggingface.co/stevetod/doduo/">Huggingface Model</a> </h2></center>
+	<center><h2><a href="https://arxiv.org/abs/2309.15110">Paper</a> | <a href="https://github.com/UT-Austin-RPL/Doduo">Code</a> | <a href="https://huggingface.co/stevetod/doduo/">Huggingface Model</a> </h2></center>
 
 
 <p>
